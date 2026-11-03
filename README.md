@@ -9,7 +9,7 @@ A public task manager for Practical Assignment 1, Team Project – IT, Vistula U
 - **Contributor page:** https://vistula-team-project-73701.github.io/vistula-task-manager/contribution.html
 - **Contributor JSON:** https://vistula-team-project-73701.github.io/vistula-task-manager/contribution.json
 
-> Setup is in progress: the Supabase project must be connected. The contribution resources become available after the partner's pull request is merged.
+> Database setup is in progress: the Supabase project must be connected. Both team contribution pull requests have been reviewed and merged.
 
 ## Features
 
@@ -47,7 +47,7 @@ Open http://127.0.0.1:8000/. The same JavaScript and public database are used lo
 ## Publish on GitHub Pages
 
 1. Use the dedicated course account `vistula-team-project-STUDENT_ID` and create its own public repository named exactly `vistula-task-manager`.
-2. Replace `YOUR_STUDENT_ID` in `index.html` and the owner information in this README. Commit the application and populated public configuration to `main`.
+2. Check the student ID in `index.html` and owner information in this README. Commit the application and populated public configuration to `main`.
 3. Open repository **Settings → Pages**. Select **Deploy from a branch**, branch **main**, folder **/(root)**, and save.
 4. Verify `https://USERNAME.github.io/vistula-task-manager/` and its database operations in a browser. All asset and JSON paths are relative to support the repository subdirectory.
 
@@ -59,8 +59,9 @@ Both students already own a repository called `vistula-task-manager`, so give ea
 
 The contributor forks the partner repository, creates `feature/team-contribution`, adds only the two required contribution files, and opens a PR against the partner's `main`. The JSON contains the **contributor's** student ID. The HTML has the heading `Team Contribution`, a `#load-contributor` button labelled `Show Contributor`, a `#contributor-student-id` element, and an `index.html` link. On click, it fetches `contribution.json` and displays its `contributorStudentId` value. The receiving repository owner reviews and merges the PR. Repeat in the opposite direction.
 
-- **My contribution to my partner's repository (merged PR):** Pending
-- **My partner's contribution to this repository (merged PR):** Pending
+- **Partner:** student 72930, [vistula-team-project-72930](https://github.com/vistula-team-project-72930).
+- **My contribution to my partner's repository (merged PR):** [Add contributor page – 73701](https://github.com/vistula-team-project-72930/vistula-task-manager/pull/1).
+- **My partner's contribution to this repository (merged PR):** [Add contributor page – 72930](https://github.com/vistula-team-project-73701/vistula-task-manager/pull/1).
 
 ## Verification
 
