@@ -9,8 +9,6 @@ A public task manager for Practical Assignment 1, Team Project – IT, Vistula U
 - **Contributor page:** https://vistula-team-project-73701.github.io/vistula-task-manager/contribution.html
 - **Contributor JSON:** https://vistula-team-project-73701.github.io/vistula-task-manager/contribution.json
 
-> Database setup is in progress: the Supabase project must be connected. Both team contribution pull requests have been reviewed and merged.
-
 ## Features
 
 Display, add, edit, complete, reopen, and delete tasks. Each task has a title, an optional description, and a completion status. Every change is sent to the Supabase REST API. The list also supports filtering and manual refresh. Error messages explain failed operations, and unsaved form input is retained after a failed save.
