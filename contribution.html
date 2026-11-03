@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Meet the student who contributed to this Task Manager.">
+  <title>Team Contribution</title>
+  <style>
+    :root { color-scheme: light; font-family: "Segoe UI", system-ui, sans-serif; color: #20372f; background: #f6f6f0; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+    main { width: min(100%, 520px); padding: 36px; background: #fff; border: 1px solid #e0e4da; border-radius: 14px; }
+    .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #68736c; }
+    h1 { font: 400 clamp(27px, 7vw, 36px)/1.2 Georgia, serif; letter-spacing: -1px; margin: 18px 0; }
+    p { font-size: 14px; line-height: 1.7; color: #68736c; }
+    button { width: 100%; background: #1b4338; color: #fff; border: 0; border-radius: 7px; padding: 13px 18px; margin-top: 16px; font: 600 14px "Segoe UI", system-ui, sans-serif; cursor: pointer; }
+    button:hover:not(:disabled) { background: #285848; }
+    button:disabled { opacity: .6; cursor: wait; }
+    #contributor-student-id { background: #eef4e6; border: 1px solid #dbe5cd; padding: 15px; border-radius: 7px; margin-top: 18px; overflow-wrap: anywhere; min-height: 52px; color: #20372f; }
+    #contribution-status { min-height: 24px; font-size: 12px; margin: 8px 0 20px; }
+    #contribution-status[data-error="true"] { color: #a73d32; }
+    a { color: #1b4338; font-size: 13px; text-underline-offset: 4px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #7d9c42; outline-offset: 4px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">VISTULA · TEAM PROJECT</p>
+    <h1>Team Contribution</h1>
+    <p>This page was added through a partner’s pull request. Load the contributor’s student ID below.</p>
+    <button id="load-contributor" type="button">Show Contributor</button>
+    <div id="contributor-student-id" aria-live="polite" aria-atomic="true">Contributor not loaded yet.</div>
+    <p id="contribution-status" role="status" aria-live="polite"></p>
+    <a href="index.html">← Back to Task Manager</a>
+  </main>
+  <script>
+    const button = document.getElementById("load-contributor");
+    const output = document.getElementById("contributor-student-id");
+    const status = document.getElementById("contribution-status");
+    button.addEventListener("click", async () => {
+      button.disabled = true;
+      status.textContent = "Loading contributor…";
+      status.dataset.error = "false";
+      try {
+        const response = await fetch("contribution.json", { cache: "no-store", signal: AbortSignal.timeout(15000) });
+        if (!response.ok) throw new Error(`Could not load contribution.json (HTTP ${response.status}).`);
+        const data = await response.json();
+        const id = String(data?.contributorStudentId ?? "");
+        if (!/^\d+$/.test(id)) throw new Error("contribution.json must contain a valid contributorStudentId.");
+        output.textContent = `Contributor Student ID: ${id}`;
+        status.textContent = "Contributor loaded from contribution.json.";
+      } catch (error) {
+        output.textContent = "Contributor could not be loaded.";
+        status.textContent = error.name === "TimeoutError" ? "The request timed out. Please try again." : `${error.message} Please try again.`;
+        status.dataset.error = "true";
+      } finally { button.disabled = false; }
+    });
+  </script>
+</body>
+</html>
