@@ -1,0 +1,16 @@
+{
+  "name": "vistula-task-manager",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Vistula Team Project task manager using the Supabase REST API.",
+  "scripts": {
+    "start": "python main.py",
+    "test": "node --test tests/api.test.js",
+    "test:e2e": "playwright test",
+    "test:live": "node scripts/check-live.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}

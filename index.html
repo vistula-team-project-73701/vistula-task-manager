@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple, shared task manager for the Vistula Team Project course.">
+  <title>Task Manager</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231b4338'/%3E%3Cpath d='m11 20 6 6 12-13' fill='none' stroke='%23d9edb5' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Task Manager home"><span class="brand-mark" aria-hidden="true">✓</span> Vistula <span class="brand-divider">/</span> Team Project</a>
+    <span class="student-badge">Student ID <strong id="student-id">73701</strong></span>
+  </header>
+  <main class="workspace">
+    <section class="page-heading" aria-labelledby="page-title">
+      <div><p class="eyebrow">ONE TASK AT A TIME</p><h1 id="page-title">Task Manager<span class="heading-dot" aria-hidden="true">.</span></h1><p class="page-intro">A clear place for your next steps.</p></div>
+      <a id="contribution-link" class="contribution-link" href="contribution.html">Team contribution <span aria-hidden="true">↗</span></a>
+    </section>
+    <section class="overview" aria-label="Task overview">
+      <div><span class="stat-label">All tasks</span><strong id="total-count">0</strong></div>
+      <div><span class="stat-label">In progress</span><strong id="active-count">0</strong></div>
+      <div><span class="stat-label">Completed</span><strong id="completed-count">0</strong></div>
+      <div class="overview-note"><span aria-hidden="true">✳</span><p>Small steps.<br>Steady progress.</p></div>
+    </section>
+    <div id="status-message" class="status-message" role="status" aria-live="polite" aria-atomic="true">Connecting to your task list…</div>
+    <div class="workspace-grid">
+      <section class="form-panel" aria-labelledby="form-heading">
+        <div class="panel-heading"><span class="section-number">01</span><h2 id="form-heading">Add a task</h2></div>
+        <p class="panel-description" id="form-description">Start with a title. Add the details you need.</p>
+        <form id="task-form" aria-describedby="form-description">
+          <label for="task-title">Task title <span class="required-label">required</span></label>
+          <input id="task-title" name="title" type="text" placeholder="What needs to get done?" required maxlength="200" autocomplete="off" disabled>
+          <label for="task-description">Description <span class="optional-label">optional</span></label>
+          <textarea id="task-description" name="description" placeholder="Add a little context…" rows="5" maxlength="5000" disabled></textarea>
+          <button id="task-submit" class="button button-primary" type="submit" disabled>Add task <span aria-hidden="true">+</span></button>
+          <button id="cancel-edit" class="button button-secondary" type="button" hidden>Cancel editing</button>
+        </form>
+        <div class="form-note"><span aria-hidden="true">↳</span> Saved tasks are shared with everyone using this page.</div>
+      </section>
+      <section class="list-panel" aria-labelledby="list-heading">
+        <div class="list-heading"><div class="panel-heading"><span class="section-number">02</span><h2 id="list-heading">Your tasks</h2></div><button id="refresh-tasks" type="button" class="refresh-button" disabled><span aria-hidden="true">↻</span> Refresh</button></div>
+        <div class="filters" role="group" aria-label="Filter tasks">
+          <button type="button" data-filter="all" aria-pressed="true">All tasks</button>
+          <button type="button" data-filter="active" aria-pressed="false">In progress</button>
+          <button type="button" data-filter="completed" aria-pressed="false">Completed</button>
+        </div>
+        <ul id="task-list" class="task-list" aria-busy="true"><li class="empty-state"><span class="empty-icon" aria-hidden="true">☷</span><h3>Loading your tasks</h3><p>Just a moment while we connect.</p></li></ul>
+        <p id="list-summary" class="list-summary">Tasks are stored in the shared database.</p>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer"><span>Team Project · Practical Assignment 1</span><span>Made for a more organised day.</span></footer>
+  <template id="task-template">
+    <li class="task-item">
+      <div class="task-topline"><span class="task-status"></span><span class="task-reference"></span></div>
+      <h3 class="task-title"></h3>
+      <p class="task-description"></p>
+      <div class="task-actions"><button type="button" class="toggle-task"></button><div class="task-manage"><button type="button" class="edit-task">Edit</button><button type="button" class="delete-task">Delete</button></div></div>
+    </li>
+  </template>
+  <noscript><p class="noscript-message">Please enable JavaScript to load and manage tasks.</p></noscript>
+</body>
+</html>
